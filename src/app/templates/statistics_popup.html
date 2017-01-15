@@ -1,0 +1,13 @@
+<div class="wordDetails" ng-repeat="word in statistics.words | orderBy: 'rate'">
+	<div class="word">
+		{{ word.definition.word }}
+		<small class="speak" speak="{{ word.definition.word }}"> 
+			<i class="material-icons"> volume_up </i> 
+		</small>
+	</div> 
+	<div class="gauge">
+		<div class="rate" style="width:{{ word.rate*100 }}%"> </div>
+	</div>
+	<div class="translation"> {{ word.definition.translations[lang.translations.indexOf(translation)] }} </div>	
+ 
+</div>

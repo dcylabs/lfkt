@@ -1,0 +1,44 @@
+<div ng-controller="ToolbarController" class="toolbar">
+	<ul class="options">
+		<li ng-click="toggleKeyboardDisplay()" class="{{ keyboardDisplay ? 'active' : 'inactive' }}">
+			<i class="material-icons"> keyboard </i>
+			Show/Hide keyboard  
+		</li>
+		<li ng-click="toggleNextKeyDisplay()" class="{{ keyboardDisplay && nextKeyDisplay ? 'active' : 'inactive' }}">
+			<i class="material-icons"> gps_fixed </i>
+			Show/Hide next key   
+		</li>	
+		<li ng-click="toggleSpeech()" class="{{ speech ? 'active' : 'inactive' }}">
+			<i class="material-icons"> {{ speech ? 'volume_up' : 'volume_off' }} </i>
+			Enable/Disable speech
+		</li>	
+	</ul>
+	<ul class="actions">
+		<li>
+			<span ng-click="toggleLangChooser()"> {{ lang.id | uppercase }} </span>
+			<ul class="{{ langChooserOpened ? 'opened' : '' }}">
+				<li ng-repeat="choice in langs" ng-click="setLang(choice)" class="{{ choice.id === lang.id ? 'active' : 'inactive' }}"> {{ choice.id | uppercase }} </li>	
+			</ul>
+		</li>
+		
+		<li ng-click="toggleTranslationChooser()" class="nomargin">
+			<i class="material-icons">chevron_right</i>
+		</li>
+
+		<li>
+			<span ng-click="toggleTranslationChooser()" ng-if="translation !== null"> {{ translation | uppercase }} </span>
+			<span ng-click="toggleTranslationChooser()" ng-if="translation === null"> - </span>
+			<ul class="{{ translationChooserOpened ? 'opened' : '' }}">
+				<li ng-repeat="choice in lang.translations" ng-click="setTranslation(choice)" class="{{ choice === translation ? 'active' : 'inactive' }}"> {{ choice | uppercase }} </li>	
+				<li ng-click="setTranslation(null)" class="{{ translation === null ? 'active' : 'inactive' }}"> - </li>	
+			</ul>
+		</li>
+		
+		<li> &nbsp; </li>
+		<li> &nbsp; </li>
+
+		<li ng-click="newSession()" title="Reset learning machine">
+			<i class="material-icons">settings_backup_restore</i>
+		</li>
+	</ul>
+</div>

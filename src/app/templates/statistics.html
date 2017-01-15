@@ -1,0 +1,64 @@
+<div ng-controller="StatisticsController" class="statistics {{ statisticsDisplay ? 'statisticsDisplay' : '' }}">
+	<div class="wrapper">
+		<div class="col-md-6">
+			<div class="mainIndicator">
+				<span class="primaryStat"> {{ statistics.goodKeys }} <small> KPM </small> </span>
+				<hr/>
+				<span class="secondaryStat"> Over {{ statistics.totalKeys }} keys ({{ 100*statistics.goodKeys/statistics.totalKeys | number:2 }}%) </span>
+			</div>
+
+			<div class="section">
+				TOP 3 MISTYPED KEYS 
+			</div>
+
+			<div ng-repeat="item in statistics.keys | orderBy: 'rate' track by $index " ng-if="$index < 3 && item.bads > 0" class="mistyped">		
+				<div class="title"> {{ $index+'. '+ item.key }} </div>
+				<div class="count"> {{ item.bads }} <small>MISTYPED OVER {{item.total}}</small> ({{ 100*item.bads/item.total | number:2 }}%) </div>
+				<ul class="items">
+					<li ng-repeat="item in item.mistyped | orderBy: 'counter': true track by $index">
+						{{ item.key }} ({{ item.counter }})
+					</li>
+				</ul>
+			</div>
+
+			<div ng-if="statistics.badKeys === 0" class="congratulations">
+				Good job, no mistyped key ! 
+			</div>
+
+		</div>
+
+		<div class="col-md-6">
+			<div class="mainIndicator">
+				<span class="primaryStat"> {{ statistics.goodWords }} <small> WPM </small> </span>
+				<hr/>
+				<span class="secondaryStat"> Over {{ statistics.totalWords }} words ({{ 100*statistics.goodWords/statistics.totalWords | number:2 }}%) </span>
+			</div>
+			<div class="section">
+				TOP 3 MISTYPED WORDS 
+			</div>
+
+			<div ng-repeat="item in statistics.words | orderBy: 'rate' track by $index " ng-if="$index < 3 && item.bads > 0" class="mistyped">		
+				<div class="title"> {{ $index+'. '+ item.word }} </div>
+				<div class="count"> {{ item.bads }} <small>MISTYPED OVER {{item.total}}</small> ({{ 100*item.bads/item.total | number:2 }}%) </div>
+				<ul class="items">
+					<li ng-repeat="item in item.mistyped | orderBy: 'counter': true track by $index">
+						{{ item.word }} ({{ item.counter }})
+					</li>
+				</ul>
+			</div>
+
+			<div ng-if="statistics.badWords === 0" class="congratulations">
+				Good job, no mistyped word ! 
+			</div>
+		</div>
+
+		<div class="topIcon" ng-click="showStatisticsPopup()" title="View session words with translation">
+			<i class="material-icons"> details </i>
+		</div>
+		<div class="clear"> </div>
+	</div>
+	<div class="hidden statisticsPopup">
+		<ng-include src="'statistics_popup.html'"></ng-include>
+	</div>
+
+</div>

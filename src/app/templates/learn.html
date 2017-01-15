@@ -1,0 +1,23 @@
+<div ng-controller="LearnController" class="learn">
+	<div class="wordList">
+		<div class="currentWord">
+			<span class="word">	 {{ wordList[0].word }} </span>
+			<span class="translation"> {{ wordList[0].translations[lang.translations.indexOf(translation)] }} </span>
+		</div>	
+		<span ng-repeat="word in wordList.slice(1) track by $index" class="nextWord">
+			{{ word.word }}
+		</span> 
+	</div>
+
+	<div class="inputBox">
+		<input ng-model="input" ng-keydown="keyDown($event)" ng-keyup="keyUp($event)" class="input {{ isValid ? 'valid' : 'invalid'}} " type="text" class="form-control">
+		<div class="counter">
+			<i ng-if="counter > 0" class="material-icons"> timer </i>
+			<i ng-if="counter <= 0" class="material-icons"> timer_off </i>
+			{{ ("10000" + (counter | number:2)).slice(-5) }}
+		</div>
+	</div>
+
+	
+
+</div>

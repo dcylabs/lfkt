@@ -1,0 +1,12 @@
+<div ng-controller="KeyboardController" class="keyboard {{ keyboardDisplay ? 'keyboardDisplay' : '' }} {{ nextKeyDisplay ? 'nextKeyDisplay' : '' }}">
+	<div class="wrapper">
+		<div ng-repeat="row in layout track by $index" class="row"> 
+			<div ng-repeat="key in row track by $index" class="
+			key 
+			{{ key }} 
+			{{ (key | lowercase) === (nextKey | lowercase) ? 'nextKey' : '' }}
+			{{ (key | lowercase) === (errorKey | lowercase) ? 'errorKey' : '' }}
+			{{ (key | lowercase) === (pressedKey | lowercase) ? 'pressedKey' : '' }}"> {{ key.indexOf('blank-') !== -1 ? '&nbsp;' : key }} </div>
+		</div>
+	</div>
+</div>

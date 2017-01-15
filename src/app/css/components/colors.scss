@@ -1,0 +1,59 @@
+$colors: () !default;
+
+$colors: map-merge($colors, (
+	"green": ("base": #86D801),
+	"orange": ("base": #FA8000),
+	"red": ("base": #EB3E46),
+	"grey": ("base": #E6EDF4),
+	"primary": ("base": #1436D5),
+	"secondary": ("base": #384D55)
+));
+
+// Color Classes
+@each $color_name, $color in $colors {
+  @each $color_type, $color_value in $color {
+    @if $color_type == "base" {
+      .#{$color_name} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text {
+        color: $color_value !important;
+      }
+
+      .panel.panel-#{$color_name}{
+        border-color: darken($color_value, 10%); 
+        .panel-heading{
+          background: $color_value;
+          color:white;
+        }
+      }
+
+    }
+    @else {
+      .#{$color_name}.#{$color_type} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text.text-#{$color_type} {
+        color: $color_value !important;
+      }
+    }
+  }
+}
+
+@function color($color, $type) {
+  @if map-has-key($colors, $color) {
+    $curr_color: map-get($colors, $color);
+    @if map-has-key($curr_color, $type) {
+      @return map-get($curr_color, $type);
+    }
+  }
+  @warn "Unknown `#{name}` in $colors.";
+  @return null;
+}
+
+// extending bootstrap colors 
+$brand-primary: color('primary','base');
+$brand-success: color('green','base');
+$brand-info:    color('secondary','base');
+$brand-warning: color('orange','base');
+$brand-danger:  color('red','base');

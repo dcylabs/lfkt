@@ -1,0 +1,22 @@
+body{
+	background: #f0f0f0;
+	.main{
+		.logo{
+			$spacingSize: 15px;
+			$borderSize: 4px;
+		    position: relative;
+		    display: inline-block;
+		    width: 100px;
+		    margin: 50px;
+		    padding: 5px;
+		    padding-left: $spacingSize + $borderSize;
+		    color: #333;
+		    text-align: center;
+		    font-size: 3rem;
+		    font-family: 'Roboto Mono', cursive;
+		    font-weight: bold;
+		    letter-spacing: $spacingSize;
+		    border: $borderSize solid;
+		}
+	}
+}

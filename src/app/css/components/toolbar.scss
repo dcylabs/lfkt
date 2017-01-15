@@ -1,0 +1,60 @@
+.toolbar{
+	position: relative;
+	display: inline-block;
+	padding: 5px 20px;
+	width: 740px; 
+	height: 30px;
+	background: #333;
+	color:white;
+	@include border-radius(3px);
+	@include user-select(none);
+	ul{
+		position: relative;
+		padding: 0;
+		margin: 0;
+		li{
+			position: relative;
+			display: inline-block;
+			margin: 0 5px;
+			line-height: 2rem;
+			cursor: pointer;
+			@include transition(all 0.3s);
+			i{
+				vertical-align: top;
+				font-size:2rem;
+			}
+			&.nomargin{
+				margin: 0;
+			}
+			&.inactive{
+				color: rgba(white,0.3);
+			}
+			&.active{
+				color: rgba(white,0.8);
+			}			
+		}
+	}
+	ul.options{
+		float:left;
+	}
+	ul.actions{
+		float:right;
+		ul{
+			position: absolute;
+			right: -25px;
+			bottom: 0;
+			padding: 5px 20px;
+			opacity: 0;
+			background: #333;
+			white-space: nowrap;
+			pointer-events: none;
+			@include border-radius(3px);
+			@include transition(all .3s);
+			&.opened{
+				bottom: 30px;
+				opacity: 1;
+				pointer-events: initial;				
+			}
+		}
+	}
+}

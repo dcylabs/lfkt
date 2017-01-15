@@ -1,0 +1,68 @@
+.keyboard{
+	$borderSize: 1px;
+	$keySize: 51px;
+	$keySpacing: 3px;
+	$backgroundColor:#eee;
+	$foregroundColor:#333;
+	position:relative;
+	display: inline-block;
+	width: 740px;
+	margin: 0 -1*$keySpacing;
+	opacity: 0;
+	max-height: 0; 
+	overflow: hidden; 
+	background: $backgroundColor;
+	color: $foregroundColor;
+	border:1px solid rgba($foregroundColor,0.2);
+	@include transition(all .6s); 
+	@include border-radius(3px);
+	.wrapper{
+    	padding: 21px 19.75px;
+		.row{
+			margin: 0;
+			.key{
+				position: relative;
+				display: inline-block;
+			    width: $keySize;
+			    height: $keySize;
+				margin:$keySpacing;
+			    line-height: $keySize;
+			    text-align: center;
+			    font-size: 1.3em;
+				border:$borderSize solid rgba($foregroundColor,0.2);
+			    @for $i from 1 through 24{
+				    &.blank-#{$i}{
+				    	width: $keySize*$i/12;
+				    }
+				    &.blank-#{$i}-space{
+				    	width: $keySize*$i/12 + $keySpacing + 2*$borderSize;
+				    }
+			    }
+			    &.pressedKey{
+			    	background: rgba(color('green','base'),0.6);
+			    	color: rgba(black,0.6);
+			    }
+			    &.errorKey{
+			    	background: rgba(color('red','base'),0.6);
+			    	color: rgba(black,0.6);
+			    }
+			}
+		}
+	}
+	&.keyboardDisplay{
+		max-height: 350px;
+		opacity: 1;
+	}
+	&.nextKeyDisplay{
+		.wrapper{
+			.row{
+				.key{
+				    &.nextKey{
+				    	background: rgba(#F3D841,0.6);
+				    	color: rgba(black,0.6);
+				    }
+				}
+			}
+		}
+	}
+}

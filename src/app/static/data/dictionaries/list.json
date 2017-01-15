@@ -1,0 +1,5 @@
+[
+	{ "id" : "en", "name" : "English", "translations" : ["def"], "voice": "en-GB" },
+	{ "id" : "ru", "name" : "Russian", "translations" : ["en"] , "voice": "ru-RU" },
+	{ "id" : "pl", "name" : "Polish",  "translations" : ["en"] , "voice": "pl-PL" }
+]

@@ -1,0 +1,82 @@
+.learn{
+	.wordList{
+	    position: relative;
+	    display: inline-block;
+	    width: 740px;
+	    margin: 10px auto;
+	    padding: 10px 30px 30px 30px;
+	    background: white;
+	    border: 1px solid #ccc;
+	    text-align: left;
+	    @include border-radius(3px);
+		.currentWord{
+			position: relative;
+		    display: inline-block;	
+		    vertical-align: middle;	
+			padding: 10px; 
+			text-align: center;
+			.word{
+				position: relative;
+				display: block;
+				font-weight: bold; 
+				font-size: 2em;
+			}
+			.translation{
+			    position: absolute;
+			    display: block;
+				margin-top: -5px;
+			    white-space: nowrap;
+			    font-style:italic;
+			}
+		}	    
+		span.nextWord{
+			position: relative;
+			display: inline-block;
+			top: 3px;
+			padding: 5px;
+			vertical-align: middle;
+		}
+	}
+	.inputBox{
+		position: relative;
+		width: 740px;
+		height: 60px;
+    	margin: 10px auto;
+    	padding: 10px 20px;
+		color:rgba(white,0.5);
+		background: #333;
+	    font-size: 2em;
+	    font-weight: bold;		
+	    text-align:left;     
+		@include border-radius(3px); 	
+		.input{
+		    position:absolute; 
+		    left:0; 
+		    right:0;
+		    top:0;
+		    bottom:0; 
+		    width: 100%;
+		    padding: inherit;
+		    background: transparent; 
+			font-size: inherit;     
+		    border: none; 
+		    &.valid{
+		    	color: color('green', 'base');
+		    }
+		    &.invalid{
+		    	color: color('red', 'base');	
+		    }
+		}
+		.counter{
+			position:absolute; 
+			right: 20px;
+			i{
+			    position: relative;
+			    top: -4px;
+				vertical-align: middle;
+				font-size: inherit; 
+			    font-weight: bold;
+			}
+		}
+	}
+}
